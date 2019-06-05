@@ -1,0 +1,16 @@
+---
+# tasks file for iperf-network-test
+- hosts: server
+  remote_user: centos
+  tasks:
+  - name: start iperf3 server
+    shell: iperf3 --server --daemon
+
+
+  block: 
+    - hosts: "{{item}}"
+      remote_user: centos 
+      tasks:
+        - name: run test and save the logs to file
+          shell: 'iperf3 -c {{ iperf3_server }} --logfile var/log/results_$(date "+%Y_%m_%d_%H_%M")_$HOSTNAME.log'
+  with_items: "{{groups['clients']}}"  

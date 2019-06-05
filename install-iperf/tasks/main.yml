@@ -1,0 +1,12 @@
+---
+#Installing iperf3 on CentOS
+- hosts: all 
+  remote_user: centos
+  become_user: yes
+  become_method: sudo
+  tasks:  
+  - name: Install Iperf3
+    yum:
+    - update_cache: yes
+    - name: iperf3
+    - state: latest
