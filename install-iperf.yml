@@ -2,8 +2,8 @@
 #playbook for installing iperf on all hosts in inventory file, please see hosts/hosts.yml to see all hosts
 - hosts: all 
   remote_user: ubuntu
-  become_user: yes
-  become_method: sudo
+  become: true
+  become_user: root
   gather_facts: false
 
   pre_tasks:

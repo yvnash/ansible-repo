@@ -1,10 +1,9 @@
 ---
 #playbook for running the network test
-- block:
-    - hosts: "{{item}}"
-      remote_user: ubuntu
+- hosts: "{{ item }}"
+  remote_user: ubuntu
     
-    - roles: 
-        - iperf-network-test
+  roles: 
+    - iperf-network-test
 
-  with_items: "{{groups['clients']}}"
+  with_items: "{{ groups['clients'] }}"

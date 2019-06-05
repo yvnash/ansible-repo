@@ -1,0 +1,7 @@
+---
+#Installing iperf3 on CentOS / task file for install-iperf
+- name: Install Iperf3
+  apt:
+    update_cache: yes
+    name: iperf3
+    state: latest
