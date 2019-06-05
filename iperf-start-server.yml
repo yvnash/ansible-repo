@@ -1,0 +1,7 @@
+---
+#playbook for starting the iperf server 
+- hosts: server
+  remote_user: ubuntu
+  
+  roles: 
+    - iperf-network-test

@@ -1,0 +1,7 @@
+---
+#playbook for running the network test
+- hosts: client
+  remote_user: ubuntu
+  
+  roles: 
+    - iperf-network-test

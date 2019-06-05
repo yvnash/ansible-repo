@@ -1,0 +1,16 @@
+---
+#playbook for installing iperf on all hosts in inventory file, please see hosts/hosts.yml to see all hosts
+- hosts: all 
+  remote_user: ubuntu
+  become_user: yes
+  become_method: sudo
+  gather_facts: false
+
+  pre_tasks:
+    - name: install python
+      raw: sudo apt-get -y install python3-minimal
+
+    - name : continue setup
+      setup:
+  roles: 
+    - install-iperf
