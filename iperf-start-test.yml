@@ -1,6 +1,6 @@
 ---
 #playbook for running the network test
-- hosts: all
+- hosts: server
   remote_user: ubuntu
   become: yes
   become_user: root
@@ -11,16 +11,15 @@
       - name: start iperf3 server as daemon  
         shell: iperf3 --server --daemon
       when: inventory_hostname in groups['server'] 
-     
-    - name : tasks to be executed on client
-      block:
-      - name: pause the task for testing purposes
-        pause:
-          seconds: 3
+
+- hosts: clients
+  remote_user: ubuntu
+  become: yes
+  become_user: root     
+  tasks:
+
       - name: execute iperf test
         shell: "iperf3 -c {{ server }} --logfile /var/log/Iperf3_logs/Iperf3_results_{{ ansible_date_time.date }}_{{ ansible_date_time.time }}.log"
-      when: inventory_hostname in groups['clients'] 
-        #this refences first item in server group, and gets it's ip from the inventory file 
-      vars:
-        server : "{{ groups['server'][0] }}"
+  vars:
+    server : "{{ groups['server'][0] }}"
 
