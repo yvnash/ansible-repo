@@ -1,6 +1,0 @@
----
-#task for starting the iperf3 server 
-
-- name: Start Iperf3 in server mode
-  shell: iperf3 --server --daemon
-

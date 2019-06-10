@@ -1,6 +1,0 @@
----
-# tasks file for iperf-network-test
-
-- name: run test and save the logs to file
-  shell: 'iperf3 -c {{ iperf3_server }} --logfile var/log/results_$(date "+%Y_%m_%d_%H_%M")_$HOSTNAME.log'
-
