@@ -1,0 +1,11 @@
+- name: create log directory
+  file:
+    state: directory
+    path: /var/log/Iperf3_logs
+- name: execute iperf test
+  shell: "iperf3 -c {{ server }} --logfile /var/log/Iperf3_logs/Iperf3_results_{{ ansible_date_time.date }}_{{ ansible_date_time.time }}.log"
+
+- name: ensure previous test has been executed
+  wait_for:
+      port: 5201
+      state: drained

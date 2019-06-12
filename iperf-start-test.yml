@@ -17,9 +17,11 @@
   become: yes
   become_user: root     
   tasks:
-
-      - name: execute iperf test
-        shell: "iperf3 -c {{ server }} --logfile /var/log/Iperf3_logs/Iperf3_results_{{ ansible_date_time.date }}_{{ ansible_date_time.time }}.log"
+  - name: include perf role
+    include: iperf-test.yml
+    loop:
+        - with_items: "{{ inventory_hostname  }}"
   vars:
     server : "{{ groups['server'][0] }}"
 
+  
