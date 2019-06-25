@@ -20,8 +20,6 @@
   - name: include perf role
     include: iperf-test.yml
     loop:
-        - with_items: "{{ inventory_hostname  }}"
+      - with_items: "{{ inventory_hostname  }}"
   vars:
     server : "{{ groups['server'][0] }}"
-
-  
